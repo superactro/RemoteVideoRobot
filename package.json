@@ -1,0 +1,14 @@
+{
+    "name" : "scarlet_api", 
+    "version" : "0.0.1", 
+
+    "dependencies" : { 
+        "socket.io" : "*",
+        "johnny-five": "*",
+        "express": "*"
+    },
+
+    "scripts": {
+        "start": "node server.js"
+    }
+}

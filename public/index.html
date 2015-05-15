@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scarlet App</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+	<div id="terminal" class="right togglesize smallsize terminal">
+		<div class="cmd" style="width: 100%;">
+			<textarea class="clipboard">
+			</textarea>
+		</div>
+
+		<a id="toggleTerminal" href="#">Show Terminal</a>
+		<a id="switchLazer" href="#">Switch Lazer</a>
+		<a id="initPoz" href="#">Start Pos</a>
+		<a id="mirrorPoz" href="#">Mirror Pos</a>
+		<a id="screen1" href="#">Screen 1 Pos</a>
+		<a id="screen2" href="#">Screen 2 Pos</a>
+		
+	</div>
+	
+	<!-- video streaming -->
+	<canvas id="videoCanvas" width="640" height="480">
+		<p>
+			Please use a browser that supports the Canvas Element, like
+			<a href="http://www.google.com/chrome">Chrome</a>,
+			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
+			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
+		</p>
+	</canvas>
+
+
+
+	<!-- declare javascript dependencies -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://scarletapp.no-ip.org:8081/socket.io/socket.io.js"></script>
+	<script src="lib/client.js"></script>
+	
+	<!-- video streaming -->
+	<script type="text/javascript" src="lib/jsmpg.js"></script>
+	<script type="text/javascript">
+		// Show loading notice
+		var canvas = document.getElementById('videoCanvas');
+		var ctx = canvas.getContext('2d');
+		ctx.fillStyle = '#444';
+		ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
+
+		// Setup the WebSocket connection and start the player
+		var client = new WebSocket( 'ws://scarletapp.no-ip.org:8084/' );
+		var player = new jsmpeg(client, {canvas:canvas});
+	</script>
+
+	<!-- terminal -->
+	<script src="lib/jquery.terminal.js"></script>
+	<script src="lib/terminal.js"></script>
+	<script src="lib/steps.js"></script>
+
+	<!-- GUI -->
+	<script src="lib/gui.js"></script>
+
+</body>
+</html>
